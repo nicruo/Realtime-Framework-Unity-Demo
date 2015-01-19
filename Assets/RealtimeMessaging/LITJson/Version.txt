@@ -1,0 +1,5 @@
+﻿http://lbv.github.io/litjson/
+0.7.1 
+
+- Made one correction to allow for the serializing of raw value types (strings) without a parent JsonObject
+- Added Converters for Unity types

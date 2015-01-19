@@ -1,0 +1,4 @@
+﻿https://github.com/sta/websocket-sharp
+
+- Removed Server Code
+- Exposed the WebSocket.IsConnected property

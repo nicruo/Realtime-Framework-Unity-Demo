@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{11522E9F-3F07-DCC2-5383-CDE55047F227}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
+    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
+    <UnityVersion>4.6.0f3</UnityVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Debug\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="Boo.Lang" />
+    <Reference Include="UnityScript.Lang" />
+    <Reference Include="UnityEngine">
+      <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\RealtimeMessaging\Http\HttpServiceClient.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Http\HttpTask.cs" />
+    <Compile Include="Assets\RealtimeMessaging\LITJson\IJsonWrapper.cs" />
+    <Compile Include="Assets\RealtimeMessaging\LITJson\JsonData.cs" />
+    <Compile Include="Assets\RealtimeMessaging\LITJson\JsonException.cs" />
+    <Compile Include="Assets\RealtimeMessaging\LITJson\JsonMapper.cs" />
+    <Compile Include="Assets\RealtimeMessaging\LITJson\JsonMockWrapper.cs" />
+    <Compile Include="Assets\RealtimeMessaging\LITJson\JsonReader.cs" />
+    <Compile Include="Assets\RealtimeMessaging\LITJson\JsonWriter.cs" />
+    <Compile Include="Assets\RealtimeMessaging\LITJson\Lexer.cs" />
+    <Compile Include="Assets\RealtimeMessaging\LITJson\ParserToken.cs" />
+    <Compile Include="Assets\RealtimeMessaging\LITJson\UnityExtensions.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\Android\AndroidOrtcClient.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\Android\AndroidOrtcClientFactory.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\AuthenticationClient.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\BalancerClient.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\BufferedMessage.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\ChannelSubscription.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\ClusterClient.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\DotNet\ConcurrentDictionary.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\DotNet\DotNetClient.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\DotNet\WebSocketConnection.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\HttpUtility.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\Ios\IosOrtcClient.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\Ios\IosOrtcClientFactory.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\MessageClient.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\OrtcClient.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\OrtcClientFactory.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\OrtcException.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\PresenceClient.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\StringExtensions.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Ortc\Strings.cs" />
+    <Compile Include="Assets\RealtimeMessaging\RealtimeMessenger.cs" />
+    <Compile Include="Assets\RealtimeMessaging\RealtimeMessengerSettings.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Tasks\Task.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Tasks\TaskFactory.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Tasks\TaskManager.cs" />
+    <Compile Include="Assets\RealtimeMessaging\Tasks\TaskTResult.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\ByteOrder.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\CloseEventArgs.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\CloseStatusCode.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\CompressionMethod.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\ErrorEventArgs.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Ext.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Fin.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\HandshakeBase.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\HandshakeRequest.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\HandshakeResponse.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\LogData.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\LogLevel.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Mask.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\MessageEventArgs.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\AuthenticationBase.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\AuthenticationChallenge.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\AuthenticationResponse.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\AuthenticationSchemes.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\Chunk.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\ChunkStream.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\ChunkedRequestStream.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\Cookie.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\CookieCollection.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\CookieException.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\EndPointListener.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\EndPointManager.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpBasicIdentity.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpConnection.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpDigestIdentity.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpHeaderInfo.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpHeaderType.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpListener.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpListenerContext.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpListenerException.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpListenerPrefixCollection.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpListenerRequest.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpListenerResponse.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpStatusCode.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpStreamAsyncResult.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpUtility.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\HttpVersion.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\InputChunkState.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\InputState.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\LineState.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\ListenerAsyncResult.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\ListenerPrefix.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\NetworkCredential.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\QueryStringCollection.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\ReadBufferState.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\RequestStream.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\ResponseStream.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\Security\SslStream.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\WebHeaderCollection.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\WebSockets\HttpListenerWebSocketContext.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\WebSockets\TcpListenerWebSocketContext.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Net\WebSockets\WebSocketContext.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Opcode.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\PayloadData.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\Rsv.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\SocketLogger.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\WebSocket.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\WebSocketException.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\WebSocketFrame.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\WebSocketState.cs" />
+    <Compile Include="Assets\RealtimeMessaging\WebsocketsSharp\WebSocketStream.cs" />
+    <Compile Include="Assets\RealtimeStorage\Controllers\ItemRef.cs" />
+    <Compile Include="Assets\RealtimeStorage\Controllers\ItemSnapshot.cs" />
+    <Compile Include="Assets\RealtimeStorage\Controllers\StorageController.cs" />
+    <Compile Include="Assets\RealtimeStorage\Controllers\StorageMessenger.cs" />
+    <Compile Include="Assets\RealtimeStorage\Controllers\TableRef.cs" />
+    <Compile Include="Assets\RealtimeStorage\DataAccess\IStorageRepository.cs" />
+    <Compile Include="Assets\RealtimeStorage\DataAccess\RealtimeStorageSettings.cs" />
+    <Compile Include="Assets\RealtimeStorage\DataAccess\StorageConverters.cs" />
+    <Compile Include="Assets\RealtimeStorage\DataAccess\StorageRepository.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\ClusterResponse.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\DataKey.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\Enums.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\Filter.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\ItemList.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\ItemListRequest.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\ItemMetadata.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\ItemQueryRequest.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\Key.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\Policy.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\Role.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\StorageError.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\StorageKeyAttribute.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\StorageMetadata.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\StorageRequest.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\StorageResponse.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\TableKey.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\TableList.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\TableMetadata.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\TableThroughput.cs" />
+    <Compile Include="Assets\RealtimeStorage\Models\UriPrototype.cs" />
+    <Compile Include="Assets\Scripts\BulletScript.cs" />
+    <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\EnemyControl.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\HeroControl.cs" />
+    <Compile Include="Assets\Scripts\RealtimeManager.cs" />
+    <Compile Include="Assets\Scripts\Score.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\RealtimeMessaging\LITJson\Version.txt" />
+    <None Include="Assets\RealtimeMessaging\WebsocketsSharp\Version.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
+</Project>
