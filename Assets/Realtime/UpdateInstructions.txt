@@ -1,0 +1,9 @@
+When upgrading the Realtime package please follow these steps.
+
+1) Delete the existing package and plugin.
+2) Download and install the updated package
+3) Your old settings file will need to reference the new Settings ScriptableObject script.
+	- You may either update the missing reference or delete the old file,
+	- If you delete the file, you will need to reapply your application key 
+
+Thank you.

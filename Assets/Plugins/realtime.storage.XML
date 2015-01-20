@@ -1,0 +1,2033 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>realtime.storage</name>
+    </assembly>
+    <members>
+        <member name="T:Realtime.Storage.Controllers.ItemRef`1">
+            <summary>
+            Definition of an item reference.
+            </summary>
+            <typeparam name="T">Type of the item.</typeparam>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemRef`1.Get">
+            <summary>
+            Get the value of this item reference.
+            </summary>
+            <returns>This item reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemRef`1.Set">
+            <summary>
+            Updates the value of this item reference.
+            </summary>
+            <returns>This item reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemRef`1.Del">
+            <summary>
+            Delete the value of this item reference.
+            </summary>
+            <returns>This item reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemRef`1.Incr(System.String,System.Int32)">
+            <summary>
+            Increments a given attribute of an item. If the attribute doesn't exist, it is set to zero before the operation.
+            </summary>
+            <param name="property">The name of the item's attribute.</param>
+            <param name="value">The number to add.</param>
+            <returns>This item reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemRef`1.Incr(System.String)">
+            <summary>
+            Increments a given attribute of an item. If the attribute doesn't exist, it is set to zero before the operation.
+            </summary>
+            <param name="property">The name of the item's attribute.</param>
+            <returns>This item reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemRef`1.Decr(System.String)">
+            <summary>
+            Decrements the value of an items attribute. If the attribute doesn't exist, it is set to zero before the operation.
+            </summary>
+            <param name="property">The name of the item's attribute.</param>
+            <returns>This item reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemRef`1.Decr(System.String,System.Int32)">
+            <summary>
+            Decrements the value of an items attribute. If the attribute doesn't exist, it is set to zero before the operation.
+            </summary>
+            <param name="property">The name of the item's attribute.</param>
+            <param name="value">The number to subtract.</param>
+            <returns>This item reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemRef`1.On(Realtime.Storage.Models.StorageEventType,System.Action{Realtime.Storage.Controllers.ItemSnapshot},System.Action{Realtime.Storage.Models.StorageError})">
+            <summary>
+            Attach a listener to run every time the eventType occurs.
+            </summary>
+            <param name="eventType">The type of the event to listen. Possible values: put, update, delete.</param>
+            <param name="handler">The function to run whenever the notification is received. If the event type is "put", it will immediately trigger a "getItems" to get the initial data and run the callback with each item snapshot as argument.</param>
+            <param name="onError">Response if an error was returned from the server.</param>
+            <returns>This item reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemRef`1.Once(Realtime.Storage.Models.StorageEventType,System.Action{Realtime.Storage.Controllers.ItemSnapshot},System.Action{Realtime.Storage.Models.StorageError})">
+            <summary>
+            Attach a listener to run only once the event type occurs.
+            </summary>
+            <param name="eventType">The type of the event to listen. Possible values: put, update, delete.</param>
+            <param name="handler">The function invoked, only once, when the notification is received. If the event type is "put", it will immediately trigger a "getItems" to get the initial data and run the callback with each item snapshot as argument.</param>
+            <param name="onError">Response if an error was returned from the server.</param>
+            <returns>This item reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemRef`1.Off(Realtime.Storage.Models.StorageEventType)">
+            <summary>
+            Remove all event handlers by its event type.
+            </summary>
+            <param name="eventType">The type of the event to remove. Possible values: put, update, delete. If not specified, it will remove all listeners of this reference.</param>
+            <returns>This item reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemRef`1.Off">
+            <summary>
+            Remove all event handlers.
+            </summary>
+            <returns>This item reference.</returns>
+        </member>
+        <member name="P:Realtime.Storage.Controllers.ItemRef`1.Item">
+            <summary>
+            Object the reference is manipulating.
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Controllers.ItemSnapshot">
+            <summary>
+            Definition of an item snapshot.
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemSnapshot.Ref``1">
+            <summary>
+            Retrieves a new reference for the item represented by the snapshot.
+            </summary>
+            <returns>A new item reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemSnapshot.Val">
+            <summary>
+            Returns the properties of the item represented by the snapshot..
+            </summary>
+            <returns>The value of this snapshot.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.ItemSnapshot.Val``1">
+            <summary>
+            Returns the properties of the item represented by the snapshot..
+            </summary>
+            <returns>The value of this snapshot.</returns>
+        </member>
+        <member name="T:Realtime.Storage.Controllers.StorageController">
+            <summary>
+            Adds Update notification to Item and Storage Ref's using the ORTC messenger 
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageController.#ctor(System.String,System.String,Realtime.Storage.Models.UriPrototype,Realtime.Storage.Models.UriPrototype)">
+            <summary>
+            Creates a new storage controller with custom settings
+            </summary>
+            <param name="applicationKey"></param>
+            <param name="privateKey"></param>
+            <param name="storageurl"></param>
+            <param name="messengerUrl"></param>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageController.#ctor(System.String)">
+            <summary>
+            Creates a new storage controller using default settings with a connection
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageController.#ctor">
+            <summary>
+            Creates a new storage controller using default settings without a connection
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageController.AddNotification(System.String,System.Action{System.String})">
+            <summary>
+            Registers a update notification callback
+            </summary>
+            <param name="channel"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageController.RemoveNotification(System.String,System.Action{System.String})">
+            <summary>
+            Removes an update notification callback
+            </summary>
+            <param name="channel"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageController.Table``1">
+            <summary>
+            Creates a new table reference.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageController.Connect">
+            <summary>
+            Connects the controller for the receipt of Storage update notification
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageController.Disconnect">
+            <summary>
+            Disconnects the controller for the receipt of Storage update notification
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageController.WaitForConnect">
+            <summary>
+            Coroutine for waiting for connection to be made.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Realtime.Storage.Controllers.StorageController.ApplicationKey">
+            <summary>
+            Application Key
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Controllers.StorageController.AuthenticationToken">
+            <summary>
+            Authentication token for the user
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Controllers.StorageController.PrivateKey">
+            <summary>
+            Private key for the application
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Controllers.StorageController.Metadata">
+            <summary>
+            Metadata Instance
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Controllers.StorageController.Repository">
+            <summary>
+            Repository Instance
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Controllers.StorageController.Messenger">
+            <summary>
+            Messenger Instance
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Controllers.StorageController.Settings">
+            <summary>
+            Current Realtime Storage Settings
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Controllers.StorageController.IsConnected">
+            <summary>
+            Is connected to the Update message gateway
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Controllers.StorageMessenger">
+            <summary>
+            Wraps the OrtcCLient to allow for multiple message listeners.
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageMessenger.#ctor(Realtime.Storage.Models.UriPrototype,System.String)">
+            <summary>
+            Constructs a new messenger
+            </summary>
+            <param name="uri"></param>
+            <param name="appKey"></param>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageMessenger.Connect(System.String)">
+            <summary>
+            Starts the connection
+            </summary>
+            <param name="authToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageMessenger.Disconnect">
+            <summary>
+            disconnects the messenger
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageMessenger.Subscribe(System.String,Realtime.Messaging.Ortc.OnMessageDelegate)">
+            <summary>
+            subscribes to a channel
+            </summary>
+            <param name="channel"></param>
+            <param name="onMessage"></param>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.StorageMessenger.IsSubscribed(System.String)">
+            <summary>
+            Returns true if subscribed to the channel
+            </summary>
+            <param name="channel"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Realtime.Storage.Controllers.StorageMessenger.IsConnected">
+            <summary>
+            Is the messenger connected ?
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Controllers.TableRef`1">
+            <summary>
+            TableRef is a Extends DataAccess with Update Notification via the Messenger.
+            All Data Acquired via the TableRef will be updated.
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.#ctor(Realtime.Storage.Controllers.StorageController)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="storage"></param>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.Del">
+            <summary>
+            Delete this table.
+            </summary>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.Push(`0)">
+            <summary>
+            Adds a new item to the table.
+            </summary>
+            <typeparam name="T">The type of the item to add.</typeparam>
+            <param name="item">The item to add.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.Create(Realtime.Storage.Models.TableKey,Realtime.Storage.Models.ProvisionType,Realtime.Storage.Models.ProvisionLoad)">
+            <summary>
+            Creates the table referred by this reference.
+            </summary>
+            <param name="key">The definition of the key schema for this table. Must contain at least a primary key.</param>
+            <param name="provisionType">Type of provisioning (number of read/write operations per second).</param>
+            <param name="provisionLoad">Option of provision load (how the number of operations are divided between the read and write throughput).</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.Create(Realtime.Storage.Models.TableKey,Realtime.Storage.Models.TableThroughput)">
+            <summary>
+            Creates the table referred by this reference with a customized throughput.
+            </summary>
+            <param name="key">The definition of the key schema for this table. Must contain at least a primary key.</param>
+            <param name="throughput">The custom provision to apply.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.Update(Realtime.Storage.Models.ProvisionType,Realtime.Storage.Models.ProvisionLoad)">
+            <summary>
+            Updates the provisioning of the table.
+            </summary>
+            <param name="provisionType">Type of provisioning (number of read/write operations per second).</param>
+            <param name="provisionLoad">Option of provision load (how the number of operations are divided between the read and write throughput).</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.Update(Realtime.Storage.Models.TableThroughput)">
+            <summary>
+            Updates the provisioning of the table.
+            </summary>
+            <param name="throughput">The custom provision to apply.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.Item(`0)">
+            <summary>
+            Creates a new item reference.
+            </summary>
+            <typeparam name="T">The type of the item to add.</typeparam>
+            <param name="item">The item to add.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.GetItems(Realtime.Storage.Models.ItemQueryRequest{`0})">
+            <summary>
+            Retrieve a list of items based on the filters (if any) applied.
+            </summary>
+            <typeparam name="T">The type of the items to retrieve.</typeparam>
+            <param name="request">describes the selection action</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.On(Realtime.Storage.Models.StorageEventType,System.String,System.Action{Realtime.Storage.Controllers.ItemSnapshot})">
+            <summary>
+            Attach a listener to run every time the eventType occurs on item(s) with the provided primary key.
+            </summary>
+            <typeparam name="T">The type of the item.</typeparam>
+            <param name="eventType">The type of the event to listen for.</param>
+            <param name="primaryKeyValue">The primary key of the item(s). Everytime a change occurs to the item(s), the handler is called.</param>
+            <param name="handler">The function to run whenever the notification is received. If the event type is "put", it will immediately trigger a "getItems" to get the initial data and run the callback with each item snapshot as argument.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.On(Realtime.Storage.Models.StorageEventType,System.Action{Realtime.Storage.Controllers.ItemSnapshot})">
+            <summary>
+            Attach a listener to run every time the eventType occurs.
+            </summary>
+            <typeparam name="T">The type of the item.</typeparam>
+            <param name="eventType">The type of the event to listen for.</param>
+            <param name="handler">The function to run whenever the notification is received. If the event type is "put", it will immediately trigger a "getItems" to get the initial data and run the callback with each item snapshot as argument.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.Once(Realtime.Storage.Models.StorageEventType,System.String,System.Action{Realtime.Storage.Controllers.ItemSnapshot})">
+            <summary>
+            Attach a listener to run only once, when the eventType occurs on item(s) with the provided primary key.
+            </summary>
+            <typeparam name="T">The type of the item.</typeparam>
+            <param name="eventType">The type of the event to listen for.</param>
+            <param name="primaryKeyValue">The primary key of the item(s). When a change occurs to the item(s), the handler is called once.</param>
+            <param name="handler">The function invoked, only once, when the notification is received. If the event type is "put", it will immediately trigger a "getItems" to get the initial data and run the callback with each item snapshot as argument.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.Once(Realtime.Storage.Models.StorageEventType,System.Action{Realtime.Storage.Controllers.ItemSnapshot})">
+            <summary>
+            Attach a listener to run only once when the eventType occurs.
+            </summary>
+            <typeparam name="T">The type of the item.</typeparam>
+            <param name="eventType">The type of the event to listen for.</param>
+            <param name="handler">The function invoked, only once, when the notification is received. If the event type is "put", it will immediately trigger a "getItems" to get the initial data and run the callback with each item snapshot as argument.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.Off(Realtime.Storage.Models.StorageEventType,System.String)">
+            <summary>
+            Remove a listener(s).
+            </summary>
+            <param name="eventType">The type of the event.</param>
+            <param name="primaryKeyValue">The primary key of the item(s)</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.Off(Realtime.Storage.Models.StorageEventType)">
+            <summary>
+            Remove a listener(s).
+            </summary>
+            <param name="eventType">The type of the event.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Controllers.TableRef`1.Off">
+            <summary>
+            Remove all listeners.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Realtime.Storage.Controllers.TableRef`1.TableMeta">
+            <summary>
+            Table Metadata
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Controllers.TableRef`1.ItemMeta">
+            <summary>
+            Item Metadata
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Controllers.TableRef`1.TableName">
+            <summary>
+            Name of the Table
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Controllers.TableRef`1.TableNotificationMessage`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TK"></typeparam>
+        </member>
+        <member name="T:Realtime.Storage.DataAccess.IStorageRepository">
+            <summary>
+            Data Access For Cloud Storage
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.RegisterType``1(System.String,System.String,System.String)">
+            <summary> 
+            For registering item types. Alternative to using the  StorageKeyAttribute
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="tableName">The table name</param>
+            <param name="primaryKey">primary property name</param>
+            <param name="secondaryKey">secondary property name</param>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.Authenticate(System.String,System.String[],System.Int32)">
+            <summary>
+            Authenticates the user for the storage access role(s)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.IsAuthenticated">
+            <summary>
+            Is the user authenticated ?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.ListRoles">
+            <summary>
+            Retrieves a paginated list of the names of all the roles created by the user’s application.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.GetRoles(System.String[])">
+            <summary>
+            Retrieves the all the roles associated with the subscription.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.GetRole(System.String)">
+            <summary>
+            Retrieves the policies that compose the role.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.GetTable(System.String)">
+            <summary>
+            Gets a table's metadata
+            </summary>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.CreateTable(Realtime.Storage.Models.TableMetadata)">
+            <summary>
+            Post a table's metadata
+            </summary>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.UpdateTable(Realtime.Storage.Models.TableMetadata)">
+            <summary>
+            Puts a table's metadata
+            </summary>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.DeleteTable(System.String)">
+            <summary>
+            Deletes a table
+            </summary>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.ListTables(System.Int32,System.String)">
+            <summary>
+            Returns a listing of tables
+            </summary>
+            <param name="limit"></param>
+            <param name="startTable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.GetMetadata``1">
+            <summary>
+            Returns metadata about the Type
+            </summary>
+            <typeparam name="T">The data type</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.Get``1(System.Object)">
+            <summary>
+            Returns the item by Id
+            </summary>
+            <typeparam name="T">The type to fetch</typeparam>
+            <param name="id">the primary id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.Get``1(System.Object,System.Object)">
+            <summary>
+            Returns the item by Id
+            </summary>
+            <typeparam name="T">The type to fetch</typeparam>
+            <param name="id">the primary id</param>
+            <param name="secondary">the secondary id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.Get``1(Realtime.Storage.Models.DataKey)">
+            <summary>
+            Returns the item by Id
+            </summary>
+            <typeparam name="T">The type to fetch</typeparam>
+            <param name="key">the identities</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.Create``1(``0)">
+            <summary>
+            Creates/saves a new item
+            </summary>
+            <typeparam name="T">The item type</typeparam>
+            <param name="item">the item to save</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.Update``1(``0)">
+            <summary>
+            Update the item
+            </summary>
+            <typeparam name="T">The type to fetch</typeparam>
+            <param name="item">the item to save</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.Delete``1(``0)">
+            <summary>
+            Removes the item
+            </summary>
+            <typeparam name="T">The type to fetch</typeparam>
+            <param name="item">the item to delete</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.Incr``1(``0,System.String,System.Int32)">
+            <summary>
+            Increments a numeric property
+            </summary>
+            <typeparam name="T">the item type</typeparam>
+            <param name="item">the item</param>
+            <param name="propertyName">the property</param>
+            <param name="change">the incremental change</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.Decr``1(``0,System.String,System.Int32)">
+            <summary>
+            Decrements a numeric property
+            </summary>
+            <typeparam name="T">the item type</typeparam>
+            <param name="item">the item</param>
+            <param name="propertyName">the property</param>
+            <param name="change">the incremental change</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.Query``1(Realtime.Storage.Models.ItemQueryRequest{``0})">
+            <summary>
+            Returns an query ordered by the secondary key 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.IStorageRepository.List``1(Realtime.Storage.Models.ItemListRequest{``0})">
+            <summary>
+            Returns a unordered item listing
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Realtime.Storage.DataAccess.RealtimeStorageSettings">
+            <summary>
+            Default Settings for the Storage API
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.RealtimeStorageSettings.InitService">
+            <summary>
+            Instantiates the RealtimeStorageSettings from Resources
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.DataAccess.RealtimeStorageSettings.ApplicationKey">
+            <summary>
+            REPLACE WITH UOUR APPLICATION KEY
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.DataAccess.RealtimeStorageSettings.PrivateKey">
+            <summary>
+            OPTIONAL : REPLACE WITH UOUR PRIVATE KEY.
+            REQUIRED FOR AUTHENTICATION AND PRESENCE
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.DataAccess.RealtimeStorageSettings.StorageUrl">
+            <summary>
+            service URL
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.DataAccess.RealtimeStorageSettings.StorageIsCluster">
+            <summary>
+            SERVICE URL IS CLUSTER
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.DataAccess.RealtimeStorageSettings.StorageSSL">
+            <summary>
+            SERVICE URL IS HTTPS
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.DataAccess.RealtimeStorageSettings.MessengerUrl">
+            <summary>
+            service URL
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.DataAccess.RealtimeStorageSettings.MessengerIsCluster">
+            <summary>
+            SERVICE URL IS CLUSTER
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.DataAccess.RealtimeStorageSettings.MessengerSSL">
+            <summary>
+            SERVICE URL IS HTTPS
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.RealtimeStorageSettings.ResetToDefault">
+            <summary>
+            Sets all Settings to default
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.DataAccess.RealtimeStorageSettings.Instance">
+            <summary>
+            Access for the Network Manager
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.DataAccess.StorageConverters">
+            <summary>
+            Exporters and Importers for LITJson conversion
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageConverters.Initialize">
+            <summary>
+            Initializes
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.DataAccess.StorageConverters.ProvisionMeta">
+            <summary>
+            serialization DTO
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.DataAccess.StorageConverters.ProvisionMeta.id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.DataAccess.StorageConverters.ProvisionMeta.name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.DataAccess.StorageRepository">
+            <summary>
+            Data Access For Cloud Storage
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.DataAccess.StorageRepository.VerbosLogging">
+            <summary>
+            Option for logging
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.#ctor(System.String,System.String,Realtime.Storage.Models.UriPrototype)">
+            <summary>
+            new storage repository with custom settings
+            </summary>
+            <param name="appKey"></param>
+            <param name="privateKey"></param>
+            <param name="uri"></param>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.#ctor">
+            <summary>
+            new storage repository with default settings
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.Log(System.String)">
+            <summary>
+            Log
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.GetMetadata``1">
+            <summary>
+            Gets the Metadta for the type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.Post``1(System.String,System.String)">
+            <summary>
+            Http Post
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="operation"></param>
+            <param name="body"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.RemoveFields(Realtime.LITJson.JsonData,System.String[])">
+            <summary>
+            Removes JSON fields from JToken.
+            </summary>
+            <param name="token"></param>
+            <param name="fields"></param>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.RegisterType``1(System.String,System.String,System.String)">
+            <summary> 
+            For registering item types. Alternative to using the  StorageKeyAttribute
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="tableName">The table name</param>
+            <param name="primary">primary property name</param>
+            <param name="secondary">secondary property name</param>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.Get``1(System.Object)">
+            <summary>
+            Returns the item by Id
+            </summary>
+            <code>
+            
+             //get task
+             var result1 = Repository.Create(score);
+             // wait for it
+             yield return StartCoroutine(result1.WaitRoutine());
+             // client error
+             result1.ThrowIfFaulted();
+             // server error
+             if (result1.Result.hasError)
+                 throw new Exception(result1.Result.error.message);
+            
+            </code>
+            <typeparam name="T">The type to fetch</typeparam>
+            <param name="id">the primary id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.Get``1(System.Object,System.Object)">
+            <summary>
+            Returns the item by Id
+            </summary>
+            <typeparam name="T">The type to fetch</typeparam>
+            <param name="id">the primary id</param>
+            <param name="secondary">the secondary id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.Get``1(Realtime.Storage.Models.DataKey)">
+            <summary>
+            Returns the item by Id
+            </summary>
+            <typeparam name="T">The type to fetch</typeparam>
+            <param name="id">the identities</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.Create``1(``0)">
+            <summary>
+            Creates/saves a new item
+            </summary>
+            <typeparam name="T">The item type</typeparam>
+            <param name="item">the item to save</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.Update``1(``0)">
+            <summary>
+            Update the item
+            </summary>
+            <typeparam name="T">The type to fetch</typeparam>
+            <param name="item">the item to save</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.Delete``1(``0)">
+            <summary>
+            Removes the item
+            </summary>
+            <typeparam name="T">The type to fetch</typeparam>
+            <param name="item">the item to delete</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.Incr``1(``0,System.String,System.Int32)">
+            <summary>
+            Increments a numeric property
+            </summary>
+            <typeparam name="T">the item type</typeparam>
+            <param name="item">the item</param>
+            <param name="propertyName">the property</param>
+            <param name="change">the incremental change</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.Decr``1(``0,System.String,System.Int32)">
+            <summary>
+            Decrements a numeric property
+            </summary>
+            <typeparam name="T">the item type</typeparam>
+            <param name="item">the item</param>
+            <param name="propertyName">the property</param>
+            <param name="change">the incremental change</param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.Query``1(Realtime.Storage.Models.ItemQueryRequest{``0})">
+            <summary>
+            Returns an query ordered by the secondary key 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.List``1(Realtime.Storage.Models.ItemListRequest{``0})">
+            <summary>
+            Returns a unordered item listing
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.GetTable(System.String)">
+            <summary>
+            Gets a table's metadata
+            </summary>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.CreateTable(Realtime.Storage.Models.TableMetadata)">
+            <summary>
+            Post a table's metadata
+            </summary>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.UpdateTable(Realtime.Storage.Models.TableMetadata)">
+            <summary>
+            Puts a table's metadata
+            </summary>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.DeleteTable(System.String)">
+            <summary>
+            Deletes a table
+            </summary>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.ListTables(System.Int32,System.String)">
+            <summary>
+            Returns a listing of tables
+            </summary>
+            <param name="limit"></param>
+            <param name="startTable"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Realtime.Storage.DataAccess.StorageRepository.Authenticate(System.String,System.String[],System.Int32)" -->
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.IsAuthenticated">
+            <summary>
+            Is the user authenticated ?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.ListRoles">
+            <summary>
+            Retrieves a paginated list of the names of all the roles created by the user�s application.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.GetRoles(System.String[])">
+            <summary>
+            Retrieves the all the roles associated with the subscription.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.DataAccess.StorageRepository.GetRole(System.String)">
+            <summary>
+            Retrieves the policies that compose the role.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Realtime.Storage.DataAccess.StorageRepository.Settings">
+            <summary>
+            Access to the Realtime Storage Settings
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.ClusterResponse">
+            <summary>
+            DTO For resolving the Cluster Url
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.ClusterResponse.url">
+            <summary>
+            The url target
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.DataKey">
+            <summary>
+            Value of each key of the table.
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.DataKey.primary">
+            <summary>
+            Value of the primary key.
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.DataKey.secondary">
+            <summary>
+            Value of the secondary key.
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.DataKey.#ctor">
+            <summary>
+            Creates an empty key.
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.DataKey.#ctor(System.Object,System.Object)">
+            <summary>
+            Creates a key composed of primary and secondary values.
+            </summary>
+            <param name="primary">Value of the primary key.</param>
+            <param name="secondary">Value of the secondary key.</param>
+        </member>
+        <member name="M:Realtime.Storage.Models.DataKey.#ctor(System.Object)">
+            <summary>
+            Creates a key composed of primary and secondary values.
+            </summary>
+            <param name="primary">Value of the primary key.</param>
+        </member>
+        <member name="T:Realtime.Storage.Models.StorageProvisionType">
+            <summary>
+            Available types of provisioning (number of read/write operations per second).
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageProvisionType.Light">
+            <summary>
+            Id of the Light provision type (26 operations per second).
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageProvisionType.Medium">
+            <summary>
+            Id of the Medium  provision type (50 operations per second).
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageProvisionType.Intermediate">
+            <summary>
+            Id of the Intermediate provision type (100 operations per second).
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageProvisionType.Heavy">
+            <summary>
+            Id of the Heavy provision type (200 operations per second).
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageProvisionType.Custom">
+            <summary>
+            Id of the Custom provision type (customized read and write throughput).
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.StorageProvisionLoad">
+            <summary>
+            Available options of provision load (how the number of operations are divided between the read and write throughput).
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageProvisionLoad.Read">
+            <summary>
+            Id of the Read provision load (Assign more read capacity than write capacity).
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageProvisionLoad.Write">
+            <summary>
+            Id of the Write provision load (Assign more write capacity than read capacity).
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageProvisionLoad.Balanced">
+            <summary>
+            Id of the Balanced provision load (Assign similar read an write capacity).
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageProvisionLoad.Custom">
+            <summary>
+            Id of the Custom provision load.
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.StorageEventType">
+            <summary>
+            Available types of events that can be subscribed at table and item level.
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageEventType.PUT">
+            <summary>
+            Create
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageEventType.UPDATE">
+            <summary>
+            Update
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageEventType.DELETE">
+            <summary>
+            Delete
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.StorageNotificationType">
+            <summary>
+            Available types of notifications that can be invoked at table and item level.
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageNotificationType.ON">
+            <summary>
+            Notified every time
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageNotificationType.ONCE">
+            <summary>
+            Notified only once
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.StorageNotificationType.DELETE">
+            <summary>
+            Delete Notice
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.FilterOperator">
+            <summary>
+            Filter Operaation
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.FilterOperator.equals">
+            <summary>
+            @equals
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.FilterOperator.notEqual">
+            <summary>
+            notEqual
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.FilterOperator.lessEqual">
+            <summary>
+            lessEqual
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.FilterOperator.lessThan">
+            <summary>
+            lessThan
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.FilterOperator.greaterEqual">
+            <summary>
+            greaterEqual
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.FilterOperator.greaterThan">
+            <summary>
+            greaterThan
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.FilterOperator.notNull">
+            <summary>
+            notNull
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.FilterOperator.null">
+            <summary>
+            @null
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.FilterOperator.contains">
+            <summary>
+            contains
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.FilterOperator.notContains">
+            <summary>
+            notContains
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.FilterOperator.beginsWith">
+            <summary>
+            beginsWith
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.FilterOperator.in">
+            <summary>
+            In
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.FilterOperator.between">
+            <summary>
+            Between
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.Filter">
+            <summary>
+            Item Query 
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.Filter.op">
+            <summary>
+            filter operation
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.Filter.value">
+            <summary>
+            filter argument
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.Filter.item">
+            <summary>
+            filter column
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.BetweenFilter">
+            <summary>
+            Item Query
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.BetweenFilter.endvalue">
+            <summary>
+            end value for between
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.ItemList`1">
+            <summary>
+            Listing of Items with a stop key for paging
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Realtime.Storage.Models.ItemList`1.items">
+            <summary>
+            found items
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.ItemList`1.stopKey">
+            <summary>
+            Stop key for paging
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.ItemListRequest`1">
+            <summary>
+            Request for a listing of items
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.WithProperty(System.String)">
+            <summary>
+            Adds property truncation
+            </summary>
+            <param name="attribute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.WithProperties(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            adds property truncation
+            </summary>
+            <param name="attribute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.WithStartKey(System.Object)">
+            <summary>
+            The primary key of the item from which to continue an earlier operation. This value is returned in the stopKey if that operation was interrupted before completion; either because of the result set size or because of the setting for limit.
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.WithStartKey(System.Object,System.Object)">
+            <summary>
+            The primary key of the item from which to continue an earlier operation. This value is returned in the stopKey if that operation was interrupted before completion; either because of the result set size or because of the setting for limit.
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.WithStartKey(Realtime.Storage.Models.DataKey)">
+            <summary>
+            The primary key of the item from which to continue an earlier operation. This value is returned in the stopKey if that operation was interrupted before completion; either because of the result set size or because of the setting for limit.
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.Limit(System.Int32)">
+            <summary>
+            The maximum number of items to evaluate (not necessarily the number of matching items).
+            </summary>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.Asc">
+            <summary>
+            Defines if the items will be retrieved in ascending order.
+            </summary>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.Desc">
+            <summary>
+            Defines if the items will be retrieved in descending order.
+            </summary>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.NotNull(System.String)">
+            <summary>
+            Applies a filter that, upon retrieval, will have the items that have the selected property with a value other than null.
+            </summary>
+            <param name="attributeName">The name of the item's property.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.IsNull(System.String)">
+            <summary>
+            Applies a filter that, upon retrieval, will have the items that have the selected property with a null value.
+            </summary>
+            <param name="attributeName">The name of the item's property.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.IsEquals(System.String,System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items that match the filter property value.
+            </summary>
+            <param name="attributeName">The name of the item's property.</param>
+            <param name="value">The value of the property to be matched.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.NotEquals(System.String,System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items that do not match the filter property value.
+            </summary>
+            <param name="attributeName">The name of the item's property.</param>
+            <param name="value">The value of the property to filter.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.GreaterEqual(System.String,System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items greater or equal to filter property value.
+            </summary>
+            <param name="attributeName">The name of the item's property.</param>
+            <param name="value">The value of the property to filter.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.GreaterThan(System.String,System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items greater than the filter property value.
+            </summary>
+            <param name="attributeName">The name of the item's property.</param>
+            <param name="value">The value of the property to filter.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.LesserEqual(System.String,System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items lesser or equals to the filter property value.
+            </summary>
+            <param name="attributeName">The name of the item's property.</param>
+            <param name="value">The value of the property to filter.</param>
+             <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.LesserThan(System.String,System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items lesser than the filter property value.
+            </summary>
+            <param name="attributeName">The name of the item's property.</param>
+            <param name="value">The value of the property to filter.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.Contains(System.String,System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items that contains the filter property value.
+            </summary>
+            <param name="attributeName">The name of the item's property.</param>
+            <param name="value">The value of the property to filter.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.NotContains(System.String,System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items that do not contain the filter property value.
+            </summary>
+            <param name="attributeName">The name of the item's property.</param>
+            <param name="value">The value of the property to filter.</param>
+              <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.BeginsWith(System.String,System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items that begins with the filter property value.
+            </summary>
+            <param name="attributeName">The name of the item's property.</param>
+            <param name="value">The value of the property to filter.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemListRequest`1.Between(System.String,System.Object,System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items in range of the filter property value.
+            </summary>
+            <param name="attributeName">The name of the item's property.</param>
+            <param name="startValue"></param>
+            <param name="endValue"></param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="T:Realtime.Storage.Models.ItemMetadata">
+            <summary>
+            Metadata for the resolving of an objects TableName and DataKey.
+            </summary>
+            <remarks>
+            Uses Reflection. Depends on StorageKeyAttribute
+            </remarks>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemMetadata.#ctor(System.Type,Realtime.Storage.Models.StorageKeyAttribute)">
+            <summary>
+            creates a new Metadata
+            </summary>
+            <param name="t"></param>
+            <param name="a"></param>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemMetadata.#ctor(System.Type,System.String,System.String,System.String)">
+            <summary>
+            Creates a new ItemMetadta
+            </summary>
+            <param name="t"></param>
+            <param name="tableName"></param>
+            <param name="primaryName"></param>
+            <param name="secondaryName"></param>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemMetadata.GetPrimaryKey(System.Object)">
+            <summary>
+            returns the primary key value
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemMetadata.GetSecondaryKey(System.Object)">
+            <summary>
+            returns the secondary key value
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemMetadata.GetKey(System.Object)">
+            <summary>
+            returns a Datakey for the object
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemMetadata.IsValidKeyType(System.Type)">
+            <summary>
+            Is the type valid for use as a column
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Realtime.Storage.Models.ItemMetadata.ObjecType">
+            <summary>
+            Type of Object
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.ItemMetadata.Table">
+            <summary>
+            Name of the table
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.ItemMetadata.Primary">
+            <summary>
+            Name of the primary key.
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.ItemMetadata.Secondary">
+            <summary>
+            Name of the secondary key.
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.ItemMetadata.HasSecondary">
+            <summary>
+            Secondary is not null
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.ItemMetadata.PrimaryType">
+            <summary>
+            Type for Primary Key
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.ItemMetadata.SecondaryType">
+            <summary>
+            Type for Secondary Key
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.ItemMetadata.PrimaryIsField">
+            <summary>
+            Is the primary member a field or property
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.ItemMetadata.SecondaryIsField">
+            <summary>
+            Is the secondary member a field or property
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.ItemQueryRequest`1">
+            <summary>
+            Request for a ordered Query of item's from the repository
+            </summary>
+            <typeparam name="T">The Type of the Item</typeparam>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.#ctor(System.Object)">
+            <summary>
+            creates a new query for the primary key
+            </summary>
+            <param name="primaryKey"></param>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.WithProperty(System.String)">
+            <summary>
+            Adds property truncation
+            </summary>
+            <param name="attribute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.WithProperties(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            adds property truncation
+            </summary>
+            <param name="attribute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.WithStartKey(System.Object)">
+            <summary>
+            The primary key of the item from which to continue an earlier operation. This value is returned in the stopKey if that operation was interrupted before completion; either because of the result set size or because of the setting for limit.
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.WithStartKey(System.Object,System.Object)">
+            <summary>
+            The primary key of the item from which to continue an earlier operation. This value is returned in the stopKey if that operation was interrupted before completion; either because of the result set size or because of the setting for limit.
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.WithStartKey(Realtime.Storage.Models.DataKey)">
+            <summary>
+            The primary key of the item from which to continue an earlier operation. This value is returned in the stopKey if that operation was interrupted before completion; either because of the result set size or because of the setting for limit.
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.Limit(System.Int32)">
+            <summary>
+            The maximum number of items to evaluate (not necessarily the number of matching items).
+            </summary>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.Asc">
+            <summary>
+            Defines if the items will be retrieved in ascending order.
+            </summary>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.Desc">
+            <summary>
+            Defines if the items will be retrieved in descending order.
+            </summary>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.NotNull(System.String)">
+            <summary>
+            Applies a filter that, upon retrieval, will have the items that have the selected property with a value other than null.
+            </summary>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.IsNull(System.String)">
+            <summary>
+            Applies a filter that, upon retrieval, will have the items that have the selected property with a null value.
+            </summary>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.IsEquals(System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items that match the filter property value.
+            </summary>
+            <param name="value">The value of the property to be matched.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.NotEquals(System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items that do not match the filter property value.
+            </summary>
+            <param name="value">The value of the property to filter.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.GreaterEqual(System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items greater or equal to filter property value.
+            </summary>
+            <param name="value">The value of the property to filter.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.GreaterThan(System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items greater than the filter property value.
+            </summary>
+            <param name="value">The value of the property to filter.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.LesserEqual(System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items lesser or equals to the filter property value.
+            </summary>
+            <param name="value">The value of the property to filter.</param>
+             <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.LesserThan(System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items lesser than the filter property value.
+            </summary>
+            <param name="value">The value of the property to filter.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.Contains(System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items that contains the filter property value.
+            </summary>
+            <param name="value">The value of the property to filter.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.NotContains(System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items that do not contain the filter property value.
+            </summary>
+            <param name="value">The value of the property to filter.</param>
+              <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.BeginsWith(System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items that begins with the filter property value.
+            </summary>
+            <param name="value">The value of the property to filter.</param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="M:Realtime.Storage.Models.ItemQueryRequest`1.Between(System.Object,System.Object)">
+            <summary>
+            Applies a filter to the table. When fetched, it will return the items in range of the filter property value.
+            </summary>
+            <param name="startValue"></param>
+            <param name="endValue"></param>
+            <returns>This table reference.</returns>
+        </member>
+        <member name="T:Realtime.Storage.Models.Key">
+            <summary>
+            Structure of a table key.
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.Key.#ctor(System.String,Realtime.Storage.Models.Key.DataType)">
+            <summary>
+            Creates a key.
+            </summary>
+            <param name="name">Name of the key.</param>
+            <param name="dataType">Type of the key.</param>
+        </member>
+        <member name="M:Realtime.Storage.Models.Key.#ctor(System.String,System.String)">
+            <summary>
+            Creates a key.
+            </summary>
+            <param name="name">Name of the key.</param>
+            <param name="dataType">Type of the key.</param>
+        </member>
+        <member name="M:Realtime.Storage.Models.Key.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.Key.name">
+            <summary>
+            Name of the key.
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.Key.dataType">
+            <summary>
+            Type of the key.
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.Key.DataType">
+            <summary>
+            Allowed key types.
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.Key.DataType.NUMBER">
+            <summary>
+            numeric column
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.Key.DataType.STRING">
+            <summary>
+            String column
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.Policy">
+            <summary>
+            Security Policy
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.Policy.database">
+            <summary>
+            database this policy is for
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.Policy.tables">
+            <summary>
+            tables this policy is for
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.Policy.Database">
+            <summary>
+            describes the database policy
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.Policy.Database.listTables">
+            <summary>
+            permission to list all tables
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.Policy.Database.updateTable">
+            <summary>
+            permission only to update (throughput) table named 'SampleUser'
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.Policy.Database.createTable">
+            <summary>
+            permission to create tables
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.Policy.Tables">
+            <summary>
+            describes the table policy
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.Policy.Tables.Admin">
+            <summary>
+            Admin allowance
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.Policy.Tables.SampleUser">
+            <summary>
+            Sample User
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.Policy.Tables.AdminInfo">
+            <summary>
+            Allowed commands
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.Policy.Tables.AdminInfo.allow">
+            <summary>
+            C,R, ect
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.Policy.Tables.SampleUserInfo">
+            <summary>
+            Allowed commands
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.Policy.Tables.SampleUserInfo.allow">
+            <summary>
+            C,R, ect
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.Role">
+            <summary>
+            Security Role
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.Role.name">
+            <summary>
+            role name
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.Role.policies">
+            <summary>
+            policies of the role
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.StorageError">
+            <summary>
+            An exception thrown by the StorageRepository.
+            Includes a error code
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.StorageError.#ctor(System.Int32,System.String)">
+            <summary>
+            ctor
+            </summary>
+            <param name="c"></param>
+            <param name="m"></param>
+        </member>
+        <member name="P:Realtime.Storage.Models.StorageError.code">
+            <summary>
+            The error code
+            </summary>
+            <remarks>
+            TODO replace with ENUM
+            </remarks>
+        </member>
+        <member name="P:Realtime.Storage.Models.StorageError.message">
+            <summary>
+            The error reason
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.StorageKeyAttribute">
+            <summary>
+            Specifies which of the items class attributes are part of the key schema.
+            </summary>
+            <remarks>
+            Attach these to your data model classes
+            </remarks>
+        </member>
+        <member name="M:Realtime.Storage.Models.StorageKeyAttribute.#ctor(System.String,System.String)">
+            <summary>
+            ctor
+            </summary>
+            <param name="tableName"></param>
+            <param name="primaryKey"></param>
+        </member>
+        <member name="M:Realtime.Storage.Models.StorageKeyAttribute.#ctor(System.String,System.String,System.String)">
+            <summary>
+            ctor
+            </summary>
+            <param name="tableName"></param>
+            <param name="primaryKey"></param>
+            <param name="secondaryKey"></param>
+        </member>
+        <member name="P:Realtime.Storage.Models.StorageKeyAttribute.Table">
+            <summary>
+            Name of the table
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.StorageKeyAttribute.Primary">
+            <summary>
+            Primary Key is used for Item Lookup
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.StorageKeyAttribute.Secondary">
+            <summary>
+            Secondary Key is used for Ordered Queries. 
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.StorageMetadata">
+            <summary>
+            Metadata for a StorageRef
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.StorageMetadata.Add(Realtime.Storage.Models.TableMetadata)">
+            <summary>
+            adds the table metadata to the internal list
+            </summary>
+            <param name="tableMetadata"></param>
+        </member>
+        <member name="M:Realtime.Storage.Models.StorageMetadata.Get(System.String)">
+            <summary>
+            gets the table metadata for the table
+            </summary>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Realtime.Storage.Models.StorageRequest">
+            <summary>
+            Used to create a Json Request without depending on ExpandoObjects
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.StorageResponse`1">
+            <summary>
+            Response from the service
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Realtime.Storage.Models.StorageResponse`1.#ctor(`0)">
+            <summary>
+            ctor
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Realtime.Storage.Models.StorageResponse`1.#ctor(Realtime.Storage.Models.StorageError)">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.StorageResponse`1.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.StorageResponse`1.data">
+            <summary>
+            Requested Data
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.StorageResponse`1.error">
+            <summary>
+            Error (if any)
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.StorageResponse`1.hasError">
+            <summary>
+            error is not null
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.TableKey">
+            <summary>
+            Table key schema.
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.TableKey.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.TableKey.#ctor(Realtime.Storage.Models.Key)">
+            <summary>
+            Creates a key schema composed of a primary key.
+            </summary>
+            <param name="_primary">Structure of the primary key.</param>
+        </member>
+        <member name="M:Realtime.Storage.Models.TableKey.#ctor(Realtime.Storage.Models.Key,Realtime.Storage.Models.Key)">
+            <summary>
+            Creates a key schema composed of a primary and secondary key.
+            </summary>
+            <param name="_primary">Structure of the primary key.</param>
+            <param name="_secondary">Structure of the secondary key.</param>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableKey.primary">
+            <summary>
+            Structure of the primary key.
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableKey.secondary">
+            <summary>
+            Structure of the secondary key.
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.TableList">
+            <summary>
+            Listing of tables returned from the GetTables Repository Action
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableList.tables">
+            <summary>
+            table names
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableList.stopTable">
+            <summary>
+            table for paging
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.ProvisionType">
+            <summary>
+            Possible table status.
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.ProvisionType.Light">
+            <summary>
+            (26 operations per second)
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.ProvisionType.Medium">
+            <summary>
+            (50 operations per second)
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.ProvisionType.Intermediate">
+            <summary>
+            (100 operations per second)  
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.ProvisionType.Heavy">
+            <summary>
+             (200 operations per second)
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.ProvisionType.Custom">
+            <summary>
+            Set manually
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.ProvisionLoad">
+            <summary>
+            Possible table status.
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.ProvisionLoad.Read">
+            <summary>
+            (Assign more read capacity than write capacity.) 
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.ProvisionLoad.Balanced">
+            <summary>
+            (Assign similar read an write capacity.)
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.ProvisionLoad.Write">
+            <summary>
+            (Assign more write capacity than read capacity.
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.ProvisionLoad.Custom">
+            <summary>
+            Set manually
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.TableMetadata">
+            <summary>
+            Information regarding a table structure
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableMetadata.table">
+            <summary>
+            The table name
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableMetadata.name">
+            <summary>
+            Name of the table.
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableMetadata.key">
+            <summary>
+            Key structure of the table.
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableMetadata.provisionType">
+            <summary>
+            Id of the provision type.
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableMetadata.provisionLoad">
+            <summary>
+            Id of the provision load.
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableMetadata.throughput">
+            <summary>
+            Throughput of the table.
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableMetadata.status">
+            <summary>
+            Current table status
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableMetadata.creationDate">
+            <summary>
+            Date of creation.
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableMetadata.size">
+            <summary>
+            Size of the table.
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableMetadata.itemCount">
+            <summary>
+            Number of items in the table. Updated every 6 hours.
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.TableMetadata.Status">
+            <summary>
+            Possible table status.
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.TableMetadata.Status.ACTIVE">
+            <summary>
+            Table is 
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.TableMetadata.Status.CREATING">
+            <summary>
+            Table is being created. While in this state, it's not possible to perform operations over its items. 
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.TableMetadata.Status.UPDATING">
+            <summary>
+            Table throughput is being updated but item manipulation is still possible.
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.TableMetadata.Status.DELETING">
+            <summary>
+            Table is being deleted.
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.TableThroughput">
+            <summary>
+            Describes the usage of a table
+            </summary>
+        </member>
+        <member name="M:Realtime.Storage.Models.TableThroughput.#ctor(System.Int32,System.Int32)">
+            <summary>
+            creates a new table
+            </summary>
+            <param name="read"></param>
+            <param name="write"></param>
+        </member>
+        <member name="M:Realtime.Storage.Models.TableThroughput.#ctor">
+            <summary>
+            creates a new table
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableThroughput.read">
+            <summary>
+            table reads per second
+            </summary>
+        </member>
+        <member name="P:Realtime.Storage.Models.TableThroughput.write">
+            <summary>
+            table writes per second
+            </summary>
+        </member>
+        <member name="T:Realtime.Storage.Models.UriPrototype">
+            <summary>
+            Describes the service endpoint. A Host path with IsCluster / IsSecure option
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.UriPrototype.Url">
+            <summary>
+            The Url
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.UriPrototype.IsCluster">
+            <summary>
+            Is Clustered
+            </summary>
+        </member>
+        <member name="F:Realtime.Storage.Models.UriPrototype.IsSecure">
+            <summary>
+            Use Https
+            </summary>
+        </member>
+    </members>
+</doc>

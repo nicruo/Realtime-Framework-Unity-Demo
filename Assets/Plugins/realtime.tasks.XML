@@ -1,0 +1,564 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>realtime.tasks</name>
+    </assembly>
+    <members>
+        <member name="T:Realtime.Tasks.HttpServiceClient">
+            <summary>
+            A http client which returns HttpTasks's
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.HttpServiceClient.ContentType">
+            <summary>
+            content type Header. Default value of "application/json"
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.HttpServiceClient.Accept">
+            <summary>
+            Accept Header. Default value of "application/json"
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.HttpServiceClient.Headers">
+            <summary>
+            Http Headers Collection
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.HttpServiceClient.GetAsync(System.String)">
+            <summary>
+            Begins the Http request
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Tasks.HttpServiceClient.GetAsync``1(System.String)">
+            <summary>
+            Begins the Http request
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Tasks.HttpServiceClient.PostAsync(System.String)">
+            <summary>
+            Begins the Http request
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Tasks.HttpServiceClient.PostAsync(System.String,System.String)">
+            <summary>
+            Begins the Http request
+            </summary>
+            <param name="url"></param>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Tasks.HttpServiceClient.PostAsync``1(System.String)">
+            <summary>
+            Begins the Http request
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Tasks.HttpServiceClient.PostAsync``1(System.String,System.String)">
+            <summary>
+            Begins the Http request
+            </summary>
+            <param name="url"></param>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Tasks.HttpServiceClient.GetCode(UnityEngine.WWW)">
+            <summary>
+            Parses the HTTPStatus Code from the header status
+            </summary>
+            <param name="www"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Realtime.Tasks.HttpTask`1">
+            <summary>
+            Return result of the HttpServiceClient
+            </summary>
+        </member>
+        <member name="T:Realtime.Tasks.Task`1">
+            <summary>
+            System.Threading.Tasks.Task implementation
+            </summary>
+        </member>
+        <member name="T:Realtime.Tasks.Task">
+            <summary>
+            System.Threading.Tasks.Task implementation
+            </summary>
+            <summary>
+            System.Threading.Tasks.Task implementation
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.Task.DisableMultiThread">
+            <summary>
+            Forces use of a single thread for debugging
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.Task.LogErrors">
+            <summary>
+            Logs Exceptions
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.Task.Paramater">
+            <summary>
+            Parameter
+            </summary> 
+        </member>
+        <member name="F:Realtime.Tasks.Task.Strategy">
+            <summary>
+            Execution option
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.#ctor">
+            <summary>
+            Creates a new task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.#ctor(Realtime.Tasks.TaskStrategy)">
+            <summary>
+            Creates a new task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.#ctor(System.Exception)">
+            <summary>
+            Creates a new Task in a Faulted state
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Realtime.Tasks.Task.#ctor(System.Action)">
+            <summary>
+            Creates a new background task
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Realtime.Tasks.Task.#ctor(System.Action,Realtime.Tasks.TaskStrategy)">
+            <summary>
+            Creates a new Task 
+            </summary>
+            <param name="action"></param>
+            <param name="mode"></param>
+        </member>
+        <member name="M:Realtime.Tasks.Task.#ctor(System.Collections.IEnumerator)">
+            <summary>
+            Creates a new Coroutine Task
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Realtime.Tasks.Task.#ctor(System.Collections.IEnumerator,System.Object)">
+            <summary>
+            Creates a new Coroutine Task
+            </summary>
+            <param name="action"></param>
+            <param name="param"></param>
+        </member>
+        <member name="M:Realtime.Tasks.Task.#ctor(System.Delegate,System.Object)">
+            <summary>
+            Creates a new background task with a paramater
+            </summary>
+            <param name="action"></param>
+            <param name="paramater"></param>
+        </member>
+        <member name="M:Realtime.Tasks.Task.#ctor(System.Delegate,System.Object,Realtime.Tasks.TaskStrategy)">
+            <summary>
+            Creates a new Task with a paramater
+            </summary>
+            <param name="action"></param>
+            <param name="paramater"></param>
+            <param name="mode"></param>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunOnBackgroundThread">
+            <summary>
+            Executes the task in background thread
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunOnCurrentThread">
+            <summary>
+            Executes the task in background thread
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunOnMainThread">
+            <summary>
+            Executes the task on the main thread
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunAsCoroutine">
+            <summary>
+            Executes the task in a coroutine
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.Start">
+            <summary>
+            Executes the task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.ContinueWith(System.Action{Realtime.Tasks.Task})">
+            <summary>
+            Called after the task is complete
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Tasks.Task.ContinueWith``1(System.Action{``0})">
+            <summary>
+            Called after the task is complete
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Tasks.Task.ThrowIfFaulted">
+            <summary>
+            will throw if faulted
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Tasks.Task.WaitRoutine">
+            <summary>
+            Wait for the task to complete in an iterator coroutine
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Tasks.Task.Wait">
+            <summary>
+            Waits for the task to complete
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.Delay(System.Int32)">
+            <summary>
+            Thread.Sleep
+            </summary>
+            <param name="millisecondTimeout"></param>
+        </member>
+        <member name="M:Realtime.Tasks.Task.Run(System.Action)">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunOnMain(System.Action)">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunOnCurrent(System.Action)">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.Run``1(System.Action{``0},``0)">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunOnMain``1(System.Action{``0},``0)">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunOnCurrent``1(System.Action{``0},``0)">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunCoroutine(System.Collections.IEnumerator)">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunCoroutine(System.Func{System.Collections.IEnumerator})">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunCoroutine(System.Func{Realtime.Tasks.Task,System.Collections.IEnumerator})">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.Run``1(System.Func{``0})">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.Run``2(System.Func{``0,``1},``0)">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunOnMain``1(System.Func{``0})">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunOnMain``2(System.Func{``0,``1},``0)">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunOnCurrent``1(System.Func{``0})">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunOnCurrent``2(System.Func{``0,``1},``0)">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunCoroutine``1(System.Collections.IEnumerator)">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunCoroutine``1(System.Func{System.Collections.IEnumerator})">
+            <summary>
+            Creates a new running task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task.RunCoroutine``1(System.Func{Realtime.Tasks.Task{``0},System.Collections.IEnumerator})">
+            <summary>
+            Creates a task which passes the task as a parameter
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.Task`1.Result">
+            <summary>
+            get the result of the task. Blocking. It is recommended you yield on the wait before accessing this value
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task`1.#ctor(`0)">
+            <summary>
+            Returns the task in the Success state.
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="M:Realtime.Tasks.Task`1.#ctor(System.Func{`0})">
+            <summary>
+            Creates a new background Task strategy
+            </summary>
+            <param name="function"></param>
+        </member>
+        <member name="M:Realtime.Tasks.Task`1.#ctor(System.Delegate,System.Object)">
+            <summary>
+            Creates a new background Task strategy
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task`1.#ctor(System.Func{`0},Realtime.Tasks.TaskStrategy)">
+            <summary>
+            Creates a new task with a specific strategy
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task`1.#ctor(System.Delegate,System.Object,Realtime.Tasks.TaskStrategy)">
+            <summary>
+            Creates a new task with a specific strategy
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task`1.#ctor(System.Collections.IEnumerator)">
+            <summary>
+            Creates a new Coroutine  task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task`1.#ctor(System.Exception)">
+            <summary>
+            Creates a new Task in a Faulted state
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Realtime.Tasks.Task`1.#ctor(Realtime.Tasks.TaskStrategy)">
+            <summary>
+            Creates a new task
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.Task`1.ContinueWith(System.Action{Realtime.Tasks.Task{`0}})">
+            <summary>
+            Called after the task is complete
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Realtime.Tasks.HttpTask`1.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.HttpTask`1.ContinueWith(System.Action{Realtime.Tasks.HttpTask{`0}})">
+            <summary>
+            Called after the task is complete
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Realtime.Tasks.HttpTask`1.Content">
+            <summary>
+            Computed from WebResponse
+            </summary>
+        </member>
+        <member name="P:Realtime.Tasks.HttpTask`1.StatusCode">
+            <summary>
+            HTTP Status Code
+            </summary>
+        </member>
+        <member name="T:Realtime.Tasks.HttpTask">
+            <summary>
+            Return result of the HttpServiceClient
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.HttpTask.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.HttpTask.ContinueWith(System.Action{Realtime.Tasks.HttpTask})">
+            <summary>
+            Called after the task is complete
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Realtime.Tasks.HttpTask.Content">
+            <summary>
+            Computed from WebResponse
+            </summary>
+        </member>
+        <member name="P:Realtime.Tasks.HttpTask.StatusCode">
+            <summary>
+            HTTP Status Code
+            </summary>
+        </member>
+        <member name="T:Realtime.Tasks.TaskStatus">
+            <summary>
+            Describes the Tasks State
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskStatus.Created">
+            <summary>
+            Ready to run
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskStatus.Running">
+            <summary>
+            Working
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskStatus.Faulted">
+            <summary>
+            Exception as thrown or otherwise stopped early
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskStatus.Success">
+            <summary>
+            Complete without error
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskStatus.Disposed">
+            <summary>
+            Dispose has been called
+            </summary>
+        </member>
+        <member name="T:Realtime.Tasks.TaskStrategy">
+            <summary>
+            Execution strategy for the Task
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskStrategy.BackgroundThread">
+            <summary>
+            Dispatches the task to a background thread
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskStrategy.MainThread">
+            <summary>
+            Dispatches the task to the main thread
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskStrategy.CurrentThread">
+            <summary>
+            Dispatches the task to the current thread
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskStrategy.Coroutine">
+            <summary>
+            Runs the task as a coroutine
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskStrategy.Custom">
+            <summary>
+            Does nothing. For custom tasks.
+            </summary>
+        </member>
+        <member name="T:Realtime.Tasks.TaskManager">
+            <summary>
+            Manager for running coroutines and schedualing actions to runs in the main thread.
+            Start / Stop coroutines from anywhere.
+            Supports runnign from background threads
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.TaskManager.ConfirmInit">
+            <summary>
+            Confirms the instance is ready for use
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.TaskManager.StartRoutine(System.Collections.IEnumerator)">
+            <summary>
+            Scheduled the routine to run (on the main thread)
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.TaskManager.StartRoutine(Realtime.Tasks.TaskManager.CoroutineInfo)">
+            <summary>
+            Scheduled the routine to run (on the main thread)
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.TaskManager.StopRoutine(System.Collections.IEnumerator)">
+            <summary>
+            Scheduled the routine to run (on the main thread)
+            </summary>
+        </member>
+        <member name="M:Realtime.Tasks.TaskManager.RunOnMainThread(System.Action)">
+            <summary>
+            Schedules the action to run on the main thread
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Realtime.Tasks.TaskManager.Log(Realtime.Tasks.TaskManager.TaskLog)">
+            <summary>
+            A thread safe logger
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="P:Realtime.Tasks.TaskManager.MainThread">
+            <summary>
+            The Main Thread
+            </summary>
+        </member>
+        <member name="P:Realtime.Tasks.TaskManager.Instance">
+            <summary>
+            Static Accessor
+            </summary>
+        </member>
+        <member name="T:Realtime.Tasks.TaskManager.TaskLog">
+            <summary>
+            Thread Safe logger
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskManager.TaskLog.Type">
+            <summary>
+            Color Code
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskManager.TaskLog.Message">
+            <summary>
+            Text
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskManager.CoroutineInfo.Coroutine">
+            <summary>
+            The IEnumerator Coroutine
+            </summary>
+        </member>
+        <member name="F:Realtime.Tasks.TaskManager.CoroutineInfo.OnComplete">
+            <summary>
+            Called on complete
+            </summary>
+        </member>
+    </members>
+</doc>

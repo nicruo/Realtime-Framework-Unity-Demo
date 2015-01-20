@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>realtime.LITJson</name>
+    </assembly>
+    <members>
+        <member name="M:Realtime.LITJson.JsonMapper.ToObject(System.String,System.Type)">
+            NV ADDITION
+        </member>
+    </members>
+</doc>
