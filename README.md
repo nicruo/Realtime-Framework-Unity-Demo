@@ -1,6 +1,8 @@
 ## Multi-player tanks vs tanks demo built with Realtime Framework on Unity
 A simple demo showcasing the Realtime Framework with the Unity plugins of Messaging and Storage.
 
+[![Click to see short video](http://img.youtube.com/vi/_1Rua3lgZp8/0.jpg)](http://youtu.be/_1Rua3lgZp8)
+
 ## About the Realtime Framework
 The Realtime Framework is presented in two plafforms: Realtime Cloud Storage and Realtime Cloud Messaging.
 
